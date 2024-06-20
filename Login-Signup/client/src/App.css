@@ -1,0 +1,15 @@
+@font-face {
+  font-family:Roboto ;
+  src: url("../fonts/Roboto-Medium.ttf");
+}
+#main
+{
+  font-family: Roboto;
+  display: flex;
+  flex-direction: column;
+}
+#title
+{
+  font-size: 32px;
+  text-align: center;
+}

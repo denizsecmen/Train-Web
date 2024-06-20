@@ -1,0 +1,26 @@
+html,body{
+  height: 90%;
+}
+.menu{
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  height: 15em;
+  justify-content: center;
+  align-items: center;
+}
+.button{
+  height: 40px;
+  width: 100px;
+}
+#buttonlist
+{
+  margin-top: 10px;
+  margin-right: 7.5%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 20%;
+}

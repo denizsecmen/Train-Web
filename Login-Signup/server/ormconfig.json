@@ -1,0 +1,22 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "your-username",
+  "password": "your-password",
+  "database": "your-database",
+  "synchronize": true,
+  "logging": false,
+  "entities": [
+    "./model/*.ts"
+  ],
+  "migrations": [
+    "./migration/**/*.ts"
+  ],
+  "subscribers": [
+    "./subscriber/**/*.ts"
+  ],
+  "cli": {
+    "entitiesDir": "./model"
+  }
+}
