@@ -3,7 +3,7 @@ import { DataSource } from "typeorm";
 import { Cart } from "../model/cart";
 import { User } from "../model/user";
 import { Item } from "../model/item";
-import { compare, hash } from 'bcrypt';
+import { hash } from 'bcrypt';
 let db = new DataSource({
       type: 'postgres',
       host: 'localhost',
@@ -33,10 +33,10 @@ export default async function signUp(req: Request, res: Response) {
     {
       if (password.match('^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$'))
       {
-        let userDB =await db.getRepository(User);
+        let userDB =db.getRepository(User);
         let user = new User();
         user.name = name;
-        user.password = password;
+        user.password =await hash(password,10);
         let sameName = await userDB.find({ where: { name: name } });
         if (sameName.length==0)
         {
@@ -59,6 +59,4 @@ export default async function signUp(req: Request, res: Response) {
   {
     res.json({mes:e});
   }
-  /*const connUser = db.getRepository(User);
-  let sameUserName = await connUser.find();*/
 }

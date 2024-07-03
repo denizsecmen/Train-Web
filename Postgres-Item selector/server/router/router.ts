@@ -5,6 +5,6 @@ import login from '../controller/login';
 let router = express.Router();
 
 router.post('/signup', signUp);
-router.post('/login', auth, login);
+router.post('/login',login);
 
 export default router;
