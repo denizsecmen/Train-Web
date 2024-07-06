@@ -1,6 +1,6 @@
-import styles from './App.module.css';
+import styles from './styles/App.module.css';
 import { Button } from '@mui/material';
-export default function menu() {
+export default function layout() {
   return (
     <div className={styles.main}>
       <div className={styles.layout}>
