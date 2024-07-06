@@ -8,6 +8,6 @@ export class Item{
   price!: number;
   @Column()
   amount!: number;
-  @Column("blob", { nullable: true, name: 'graphic' })
+  @Column("bytea", { nullable: true, name: 'graphic' })
   image!: Buffer;
 }
