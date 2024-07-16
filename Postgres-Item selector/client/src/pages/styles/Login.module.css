@@ -37,11 +37,11 @@
 {
   width: 83%;
   height: 200px;
+  font-weight: lighter;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
-
 .buttons{
   margin-top: 50px;
   width: 83%;
