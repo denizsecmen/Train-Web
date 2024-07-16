@@ -24,4 +24,32 @@
   font-family: 'Roboto';
   font-size: 24px;
   text-align: center;
+  margin-top: 20px;
+}
+.body{
+  height: calc(100% - 40px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.textField
+{
+  width: 83%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.buttons{
+  margin-top: 50px;
+  width: 83%;
+  display: flex;
+}
+.buttons>.flex
+{
+  width: 50%;
+  flex-grow: 1;
+  flex-shrink: 1;
 }
