@@ -11,7 +11,7 @@
 }
 .sign{
   width: 350px;
-  height: 80%;
+  height: 450px;
   border: 0.5px solid lightgray;
   border-radius: 5px;
   display: flex;
@@ -28,4 +28,27 @@
 .body
 {
   height: calc(100% - 34px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.textField
+{
+  width: 83%;
+  height: 300px;
+  font-weight: lighter;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.buttons{
+  margin-top: 50px;
+  width: 83%;
+  display: flex;
+}
+.buttons>.flex
+{
+  width: 50%;
+  flex-grow: 1;
+  flex-shrink: 1;
 }
