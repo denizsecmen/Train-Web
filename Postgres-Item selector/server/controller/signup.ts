@@ -22,15 +22,22 @@ async function init_db() {
 }
 init_db();
 export default async function signUp(req: Request, res: Response) {
+  console.log(req.body);
   try
   {
-    let { name, password }: { name: string, password: string } = req.body;
+    let { name, password,passwordAgain }: { name: string, password: string, passwordAgain:string } = req.body;
     if (password.length < 6)
     {
       res.status(500).json({ mes: "Password must be longer than 5 charecters." });
+      return '';
     }
     else
     {
+      if (password !== passwordAgain)
+      {
+        res.status(500).json({ mes: "Passwords not mathing" });
+        return '';
+      }
       if (password.match('^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$'))
       {
         let userDB =db.getRepository(User);
@@ -51,7 +58,7 @@ export default async function signUp(req: Request, res: Response) {
       }
       else
       {
-        res.status(500).json({ mes: "Password must include as least 1 Big letter,symbol and number" });
+        res.status(500).json({ mes: "Password must include as least 1 big letter,symbol and number" });
       }
     }
   }

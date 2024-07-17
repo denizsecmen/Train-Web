@@ -2,11 +2,6 @@ import React from 'react';
 import { Button, TextField } from '@mui/material';
 import styles from './styles/Login.module.css';
 import { useRef } from 'react';
-interface refer{
-  current: {
-  value:string|undefined
-  }
-}
 function Login() {
   const name = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
