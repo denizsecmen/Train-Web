@@ -26,7 +26,7 @@ export default function signup() {
       let response: AxiosResponse = await axios.post('http://localhost:9001/signup', {
         email: email.current?.value,
         password: password.current?.value,
-        passworagain: passworagain.current?.value,
+        passwordAgain: passworagain.current?.value,
       });
     }
     catch (e:AxiosError|any)

@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, TextField } from '@mui/material';
 import styles from './styles/Login.module.css';
 import { useRef } from 'react';
+import axios, { AxiosError } from 'axios';
 function Login() {
   const name = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
@@ -16,6 +17,19 @@ function Login() {
       password.current.value = "";
     }
   }
+  async function login() {
+    try
+    {
+      await axios.post('http://localhost:9001/login', {
+        userName: name.current?.value,
+        password: password.current?.value,
+      });
+    }
+    catch (e:AxiosError|any)
+    {
+      console.log(e);
+    }
+  }
   return (
     <div className={styles.area}>
       <div className={styles.login}>
@@ -28,7 +42,7 @@ function Login() {
             <TextField variant="outlined" inputRef={password} type='password'   inputProps={{ style: { fontWeight: 'lighter'} }} />
           </div>
           <div className={styles.buttons}>
-            <Button variant='contained' color="primary"  className={styles.signup}>Login</Button>
+            <Button variant='contained' color="primary" onClick={login} className={styles.signup}>Login</Button>
             <div className={styles.flex} />
             <Button variant='contained' color="secondary" onClick={reset} className={styles.signup}>Reset</Button>
           </div>

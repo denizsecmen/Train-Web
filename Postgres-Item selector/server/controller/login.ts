@@ -27,7 +27,8 @@ export default async function login(req: Request, res: Response) {
   {
     let { userName, password }: { userName: string, password: string } = req.body;
     let userDB = db.getRepository(User);
-    let userList =await userDB.find({ where: { name: userName } });
+    let userList = await userDB.find({ where: { name: userName } });
+    console.log(req.body);
     if (userList.length == 0)
     {
       res.status(500).json({ mes: "Password or Username incorrect." });
@@ -40,6 +41,7 @@ export default async function login(req: Request, res: Response) {
       {
         try
         {
+
           let signedData = sign({name:userName },"Test", { expiresIn: '1s' });
           res.status(200).json({ mes: "Ok",jwtKey:signedData });
         }

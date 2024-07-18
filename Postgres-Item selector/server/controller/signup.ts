@@ -25,7 +25,7 @@ export default async function signUp(req: Request, res: Response) {
   console.log(req.body);
   try
   {
-    let { name, password,passwordAgain }: { name: string, password: string, passwordAgain:string } = req.body;
+    let { email, password,passwordAgain }: { email: string, password: string, passwordAgain:string } = req.body;
     if (password.length < 6)
     {
       res.status(500).json({ mes: "Password must be longer than 5 charecters." });
@@ -33,8 +33,9 @@ export default async function signUp(req: Request, res: Response) {
     }
     else
     {
-      if (password !== passwordAgain)
+      if (password != passwordAgain)
       {
+        console.log(`${password}:${passwordAgain}`);
         res.status(500).json({ mes: "Passwords not mathing" });
         return '';
       }
@@ -42,11 +43,12 @@ export default async function signUp(req: Request, res: Response) {
       {
         let userDB =db.getRepository(User);
         let user = new User();
-        user.name = name;
+        user.name = email;
         user.password =await hash(password,10);
-        let sameName = await userDB.find({ where: { name: name } });
+        let sameName = await userDB.find({ where: { name: email } });
         if (sameName.length==0)
         {
+          console.log(user);
           console.log('Saving...')
           await userDB.save(user);
           res.status(200).send({ mes: "Ok" });
