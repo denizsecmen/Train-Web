@@ -4,6 +4,7 @@ import styles from './pages/styles/App.module.css';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
+import Dashboard from './Dashbord';
 function App() {
   return (
       <div className={styles.main}>
@@ -20,6 +21,7 @@ function App() {
       <Routes> 
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
+          <Route path='/dashboard' element={<Dashboard/>}/>
       </Routes>
       </div>
     </div>

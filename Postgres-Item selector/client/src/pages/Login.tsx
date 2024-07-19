@@ -3,9 +3,11 @@ import { Button, TextField } from '@mui/material';
 import styles from './styles/Login.module.css';
 import { useRef } from 'react';
 import axios, { AxiosError } from 'axios';
+import { useNavigate } from 'react-router';
 function Login() {
   const name = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
+  const nav = useNavigate();
   function reset()
   {
     if (name.current?.value != null)
@@ -24,6 +26,7 @@ function Login() {
         userName: name.current?.value,
         password: password.current?.value,
       });
+      nav('/dashboard');
     }
     catch (e:AxiosError|any)
     {
