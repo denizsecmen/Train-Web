@@ -42,7 +42,7 @@ export default async function login(req: Request, res: Response) {
         try
         {
 
-          let signedData = sign({name:userName },"Test", { expiresIn: '1s' });
+          let signedData = sign({name:userName },"Test", { expiresIn: '5m' });
           res.status(200).json({ mes: "Ok",jwtKey:signedData });
         }
         catch (e)

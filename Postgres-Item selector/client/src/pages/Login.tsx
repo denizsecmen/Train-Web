@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, TextField } from '@mui/material';
 import styles from './styles/Login.module.css';
 import { useRef } from 'react';
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useNavigate } from 'react-router';
 function Login() {
   const name = useRef<HTMLInputElement>(null);
@@ -22,10 +22,11 @@ function Login() {
   async function login() {
     try
     {
-      await axios.post('http://localhost:9001/login', {
+      let response:AxiosResponse=await axios.post('http://localhost:9001/login', {
         userName: name.current?.value,
         password: password.current?.value,
       });
+      document.cookie = `jwt-key=${response.data.jwtKey}`;
       nav('/dashboard');
     }
     catch (e:AxiosError|any)

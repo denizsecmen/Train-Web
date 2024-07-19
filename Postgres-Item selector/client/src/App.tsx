@@ -4,7 +4,7 @@ import styles from './pages/styles/App.module.css';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
-import Dashboard from './Dashbord';
+import Dashboard from './pages/Dashbord';
 function App() {
   return (
       <div className={styles.main}>

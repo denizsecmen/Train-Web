@@ -22,4 +22,5 @@ async function init_db() {
 init_db();
 export default function dashboard(req: Request, res: Response) {
   let repo = db.getRepository(Item);
+  res.status(200).send({ mes: "Ok", name: req.name });
 }
