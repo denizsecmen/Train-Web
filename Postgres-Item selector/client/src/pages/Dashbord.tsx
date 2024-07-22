@@ -1,7 +1,10 @@
-import './styles/Dashboard.module.css';
 import Cookies from 'js-cookie';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
+import styles from './styles/Dashboard.module.css';
+import { Navigate } from 'react-router';
+import { Button,InputGroup } from 'react-bootstrap';
+import { style } from '@mui/system';
 export default function Dashboard() {
   let [auts, chauth] = useState(false);
   async function auth() {
@@ -10,23 +13,24 @@ export default function Dashboard() {
     await axios.post('http://localhost:9001/dashboard', {
       "jwt-key": jwtKey,
     });
-    alert("Hello");
   }
   useEffect(() => {
     auth().then(() => {
       chauth(true);
-    })
+    });
   }, []);
   function mn() {
     if (auts == false)
     {
-      return (<div id="v">No</div>)
+      return ( <Navigate to='/'/> );
     }
-    else
-    {
-      return (<div id="v">Dashboard</div>)
-    }
-
   }
-  return mn(); 
+  return (
+    <div className={styles.main}>
+        <div className={styles.elementadd}>
+        </div>
+        <div className={styles.usersetting}>
+        </div>
+    </div>
+  ); 
 }

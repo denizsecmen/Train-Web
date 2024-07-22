@@ -5,6 +5,7 @@ import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
 import Dashboard from './pages/Dashbord';
+import Menu from './pages/Menu';
 function App() {
   return (
       <div className={styles.main}>
@@ -18,7 +19,8 @@ function App() {
       </Link>
       </div>
       <div className={styles.area}>
-      <Routes> 
+        <Routes> 
+          <Route path='/' element={<Menu/>}/>
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/dashboard' element={<Dashboard/>}/>
