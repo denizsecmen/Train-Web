@@ -1,3 +1,4 @@
+import { error } from "console";
 import { Request, Response, NextFunction } from "express";
 import { verify } from 'jsonwebtoken';
 declare module 'express' {
@@ -13,18 +14,15 @@ export default async function auth(req: Request, res: Response, next: NextFuncti
     console.log(data);
     let verified: any = verify(data, 'Test');
     console.log(verified);
+    req.name = verified.name;
     if (verified.iat > verified.exp)
     {
-      console.log("Expired token.");
-      res.status(500).send({ mes: "Expired token" });
-      return '';
+      throw new Error("Key Expired");
     }
-    req.name = verified.name;
   }
   catch (e)
   {
-    console.log(e);
-    res.status(500).json({ mes: "Key malformed" });
+    res.status(500).json({ mes: "Key malformed or key expired." });
   }
   finally
   {
