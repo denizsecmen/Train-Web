@@ -3,7 +3,8 @@ import { useState,useEffect } from 'react';
 import axios from 'axios';
 import styles from './styles/Dashboard.module.css';
 import { Navigate } from 'react-router';
-import { Button,InputGroup } from 'react-bootstrap';
+import { Button, FloatingLabel, Form, InputGroup } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { style } from '@mui/system';
 export default function Dashboard() {
   let [auts, chauth] = useState(false);
@@ -26,11 +27,48 @@ export default function Dashboard() {
     }
   }
   return (
-    <div className={styles.main}>
-        <div className={styles.elementadd}>
+      <div className={styles.main}>
+      <div className={styles.elementadd}>
+        <p>Item name:</p>
+        <FloatingLabel controlId='Itemname' className={styles.itemname} label="Item">
+          <Form.Control type='text' placeholder='Item name' />
+        </FloatingLabel>
+        <p>Price($):</p>
+         <FloatingLabel controlId='price' className={styles.price} label="Price">
+          <Form.Control type="number" min="1" placeholder='Price'/>
+         </FloatingLabel>
+        <p>Amount:</p>
+        <FloatingLabel controlId='price' className={styles.amount} label="Amount">
+          <Form.Control type="number" min="1" placeholder="Amount"/>
+        </FloatingLabel>
+        <div className={styles.buttonItem}>
+          <Button variant='primary'>Add</Button>
+          <Button variant='secondary'>Reset</Button>
         </div>
-        <div className={styles.usersetting}>
+      </div>
+      <div className={styles.usersetting}>
+        <div className={styles.chpassword}>
+          <div className={styles.email}>
+           <p>Change email:</p>
+           <FloatingLabel controlId="floatingPassword" className={styles.email} label="Email">
+              <Form.Control type="password" placeholder="Email" />
+           </FloatingLabel>
+          </div>
+          <div className={styles.psgroup}>
+           <p>Change password:</p>
+           <FloatingLabel controlId="floatingPassword" className={styles.pswl} label="Password">
+            <Form.Control type="password" placeholder="Password" />
+           </FloatingLabel>
+           <FloatingLabel controlId="floatingPasswordAgain" className={styles.pswl}  label="Password(again)">
+            <Form.Control type="password" placeholder="Password" />
+           </FloatingLabel>
+          </div>
+          <div className={styles.buttons}>
+            <Button variant='secondary'>Reset</Button>
+            <Button variant='primary'>Change</Button>
+          </div>
         </div>
+      </div>
     </div>
   ); 
 }

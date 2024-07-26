@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { Cart } from "../model/cart";
 import { User } from "../model/user";
 import { Item } from "../model/item";
 import { DataSource } from "typeorm";
@@ -12,7 +11,7 @@ let db = new DataSource({
       database: 'Project(Cart)',
       synchronize: true,
       logging: false,
-      entities: [Cart,User,Item],
+      entities: [User,Item],
       migrations: [],
       subscribers: [],
 });
