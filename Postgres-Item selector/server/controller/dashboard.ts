@@ -7,7 +7,7 @@ let db = new DataSource({
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'Dgs1905.',
+      password: '<password>',
       database: 'Project(Cart)',
       synchronize: true,
       logging: false,
