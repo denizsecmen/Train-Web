@@ -21,7 +21,7 @@
   "devDependencies": {
     "@types/cookie-parser": "^1.4.7",
     "@types/cors": "^2.8.17",
-    "@types/node": "^20.14.2",
+    "@types/node": "^20.14.12",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   }

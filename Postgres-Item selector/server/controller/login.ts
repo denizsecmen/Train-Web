@@ -5,19 +5,8 @@ import { Cart } from "../model/cart";
 import { User } from "../model/user";
 import { Item } from "../model/item";
 import { sign } from "jsonwebtoken";
-let db = new DataSource({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'Dgs1905.',
-      database: 'Project(Cart)',
-      synchronize: true,
-      logging: false,
-      entities: [Cart,User,Item],
-      migrations: [],
-      subscribers: [],
-});
+import { conf } from "../config/config";
+let db = new DataSource(conf);
 async function init_db() {
   await db.initialize();
 }

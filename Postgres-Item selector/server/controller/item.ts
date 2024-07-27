@@ -1,11 +1,4 @@
-import { Item } from "../model/item";
+import { conf } from "../config/config";
 import { DataSource } from "typeorm";
 
-let db = new DataSource({
-  type: "postgres",
-  host: "localhost",
-  port: 5432,
-  username: "postgres",
-  password: "Dgs1905.",
-  
-});
+let db = new DataSource(conf)
