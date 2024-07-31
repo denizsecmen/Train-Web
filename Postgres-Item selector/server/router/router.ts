@@ -10,6 +10,6 @@ let router = express.Router();
 router.post('/signup', signUp);
 router.post('/login', login);
 router.post('/dashboard', auth, dashboard);
-router.post('/itemadd', auth, item);
+router.post('/itemadd',item);
 router.get('/', main);
 export default router;
