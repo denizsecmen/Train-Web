@@ -4,17 +4,46 @@ import axios from 'axios';
 import styles from './styles/Dashboard.module.css';
 import { Navigate } from 'react-router';
 import { Button, FloatingLabel, Form, InputGroup } from 'react-bootstrap';
+import { useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { style } from '@mui/system';
 export default function Dashboard() {
-  let [auts, chauth] = useState(false);
+  async function item() {
+    let data = new FormData();
+    if (!imageRef.current?.files?.[0] || !nameRef.current?.value || !amountRef.current?.value || !priceRef.current?.value)
+    {
+      alert("Please fill all areas");
+    }
+    else
+    {
+      data.append("image", imageRef.current?.files[0]);
+      data.append("name", nameRef.current?.value);
+      data.append("amount", amountRef.current?.value.toString());
+      data.append("price", priceRef.current.value.toString());
+      await axios.post('http://localhost:9001/itemadd',data);
+    }
+  }  
+  function Reset() {
+    if (nameRef.current?.value != null)
+    {
+      nameRef.current.value = "";
+    }
+    if (priceRef.current?.value != null)
+    {
+      priceRef.current.value = "";
+    }
+    if (amountRef.current?.value != null)
+    {
+      amountRef.current.value = "";
+    }
+  }
   async function auth() {
-    let jwtKey = Cookies.get('jwt-key');
-    console.log(jwtKey);
-    await axios.post('http://localhost:9001/dashboard', {
+  let jwtKey = Cookies.get('jwt-key');
+  console.log(jwtKey);
+  await axios.post('http://localhost:9001/dashboard', {
       "jwt-key": jwtKey,
     });
   }
+  let [auts, chauth] = useState(false);
   useEffect(() => {
     auth().then(() => {
       chauth(true);
@@ -26,23 +55,25 @@ export default function Dashboard() {
       return ( <Navigate to='/'/> );
     }
   }
+  const nameRef = useRef<HTMLInputElement | null>(null);
+  const priceRef = useRef<HTMLInputElement | null>(null);
+  const amountRef = useRef<HTMLInputElement | null>(null);
+  const imageRef = useRef<HTMLInputElement | null>(null);
   return (
       <div className={styles.main}>
       <div className={styles.elementadd}>
-        <p>Item name:</p>
         <FloatingLabel controlId='Itemname' className={styles.itemname} label="Item">
-          <Form.Control type='text' placeholder='Item name' />
+          <Form.Control type='text' ref={nameRef} placeholder='Item name' />
         </FloatingLabel>
-        <p>Price($):</p>
          <FloatingLabel controlId='price' className={styles.price} label="Price">
-          <Form.Control type="number" min="1" placeholder='Price'/>
+          <Form.Control type="number" ref={priceRef} min="1" placeholder='Price'/>
          </FloatingLabel>
-        <p>Amount:</p>
         <FloatingLabel controlId='price' className={styles.amount} label="Amount">
-          <Form.Control type="number" min="1" placeholder="Amount"/>
+          <Form.Control type="number" ref={amountRef} min="1" placeholder="Amount"/>
         </FloatingLabel>
+          <Form.Control type="file" ref={imageRef} min="1" placeholder="Amount"/>
         <div className={styles.buttonItem}>
-          <Button variant='primary'>Add</Button>
+          <Button variant='primary' onClick={item}>Add</Button>
           <Button variant='secondary'>Reset</Button>
         </div>
       </div>

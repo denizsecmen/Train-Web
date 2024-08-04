@@ -5,7 +5,9 @@ import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
 import Dashboard from './pages/Dashbord';
+import { useEffect,useState } from 'react';
 import Menu from './pages/Menu';
+import axios from 'axios';
 function App() {
   return (
       <div className={styles.main}>
@@ -24,7 +26,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/dashboard' element={<Dashboard/>}/>
-      </Routes>
+        </Routes>
       </div>
     </div>
   );

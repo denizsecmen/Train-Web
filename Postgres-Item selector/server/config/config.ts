@@ -5,7 +5,7 @@ let conf:any= {
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: '<password>',
+      password: 'Dgs1905.',
       database: 'Project(Cart)',
       synchronize: true,
       logging: false,
